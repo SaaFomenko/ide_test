@@ -33,24 +33,32 @@ int* arrInit(
 	return arr;
 }
 
-void handlerArr(int* arr, const int* size)
+void handlerArr(int* arr, const int* size, std::ofstream* fout)
 {
 	std::cout << *size << std::endl;
+	*fout << *size << "\n";
+
+	int temp = arr[0];
+	arr[0] = arr[*size - 1];
+	arr[*size - 1] = temp;
 
 	for(int i = 0; i < *size; ++i)
 	{
 		std::cout << arr[i] << " ";
+		*fout << arr[i] << " ";
 	}
 
 	std::cout << std::endl;
+	*fout << "\n";
 }
 
 int main() {
 	const char* in_file = { "./in.txt" };
-	const char* out_file = { "./in.txt" };
+	const char* out_file = { "./out.txt" };
   const std::string msg[] = {
     "Не удалось отрыть файл, проверьте права доступа и его наличие по адресу: ",
     "Не удалось создаь файл, проверьте права доступа по адресу: ",
+		"Данные были преобразованы и записаны в файл: ",
   };
 
 	int x = 0;
@@ -69,8 +77,21 @@ int main() {
 	fin >> y;
 	int* arr2 = arrInit(&y, &fin);
 
-	handlerArr(arr1, &x);
-	handlerArr(arr2, &y);
+	fin.close();
+
+	std::ofstream fout (out_file);
+
+	check = fout.is_open();
+
+	check = checkCondition(&check, msg[1], out_file);
+	if (check) return 1;
+
+	handlerArr(arr2, &y, &fout);
+	handlerArr(arr1, &x, &fout);
+
+	fout.close();
+
+	std::cout << msg[2] << out_file << std::endl;
  
 	delete[] arr1;
 	arr1 = nullptr;
