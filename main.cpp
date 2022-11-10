@@ -52,7 +52,7 @@ int main() {
 
 	for (int i = arr_count - 1; i >= 0; --i)
 	{
-		handlerArr(arr_stack[i], size_stack[i], &fout);
+		handlerArr(arr_stack[i], size_stack[i], i, &fout);
 	 
 		delete[] arr_stack[i];
 		arr_stack[i] = nullptr;
