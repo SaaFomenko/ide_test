@@ -1,4 +1,4 @@
-# Examples C++ loop shift and reverse uotput in file.
+# Examples C++ loop shift and reverse output in file.
 
 [Conditon you see this link](https://github.com/netology-code/cppm-homeworks/tree/main/01/01)
 
