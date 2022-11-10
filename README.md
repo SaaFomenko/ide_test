@@ -1,4 +1,10 @@
-# ide_test
+# Examples C++ loop shift and reverse uotput in file.
+
+Conditon you see this:
+[](https://github.com/netology-code/cppm-homeworks/tree/main/01/01)
+
+## ide_test
+
 My ide vim with vim-plug:
 
 " allows you to use <Tab> for all your insert completion needs (:helpins-completion).
