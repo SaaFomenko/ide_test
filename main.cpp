@@ -6,6 +6,9 @@ int main() {
 	const char* in_file = { "./in.txt" };
 	const char* out_file = { "./out.txt" };
   const std::string msg = "Данные были преобразованы и записаны в файл: ";
+	int** arr_stack[2]{};
+	int size_stack[2]{};  
+	int i = 0;
 
 	int size = 0;
 
@@ -20,10 +23,19 @@ int main() {
 	while (fin >> size)
 	{
 		int* arr = arrInit(&fin, size);
-		handlerArr(arr, size, &fout);
+
+		arr_stack[i] = arr;
+		size_stack[i] = size;
+		++i;
+	}
+
+	for (int j = i - 1; j >= 0; --j)
+	{
+		handlerArr(arr_stack[j], size_stack[j], &fout);
  
 		delete[] arr;
 		arr = nullptr;
+
 	}
 
 	fin.close();
